@@ -31,3 +31,17 @@ extension BinaryNode {
         visit(value)
     }
 }
+
+// Recursive search through Binary Tree
+
+func search(node: BinaryNode<Int>?, searchValue: Int) -> Bool {
+    if node == nil { 
+        return false
+    }
+    
+    if node?.value == searchValue {
+        return true
+    } else {
+        return search(node: node?.leftChild, searchValue: searchValue) || search(node: node?.rightChild, searchValue: searchValue)
+    }
+}
