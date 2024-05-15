@@ -21,3 +21,26 @@ extension RandomAccessCollection where Element: Comparable {
         }
     }
 } 
+
+
+func binarySearch(for value: Int, in array: [Int]) -> Int? {
+    
+    func binarySearch2(for value: Int, in array: [Int], low: Int, high: Int) -> Int? {
+        
+        guard low <= high else {
+            return nil
+        }
+
+        let mid = (low + high) / 2
+        
+        if array[mid] == value {
+            return mid
+        } else if array[mid] > value {
+            return binarySearch2(for: value, in: array, low: low, high: mid - 1)
+        } else {
+            return binarySearch2(for: value, in: array, low: mid + 1, high: high)
+        }
+    }
+    
+    return binarySearch2(for: value, in: array, low: 0, high: array.count - 1)
+}
